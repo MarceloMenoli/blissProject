@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { Question } from "../../services/types";
-import { useParams } from "react-router-dom";
-import { fetchQuestion } from "../../services/blissApi";
+import { useNavigate, useParams } from "react-router-dom";
+import { fetchQuestion, updateQuestion } from "../../services/blissApi";
 import {
   ChoicesContainer,
   DetailQuestionContainer,
+  GoBackButton,
   QuestionContainer,
   QuestionText,
 } from "./styles";
@@ -12,11 +13,25 @@ import {
 export const QuestionDetail = () => {
   const [question, setQuestion] = useState<Question>();
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const getQuestion = async () => {
     try {
       const data = await fetchQuestion(id);
       setQuestion(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const voteQuestion = async (choiceIndex: number) => {
+    try {
+      const updatedQuestion = { ...question };
+      updatedQuestion?.choices
+        ? (updatedQuestion.choices[choiceIndex].votes += 1)
+        : null;
+      const response = await updateQuestion(updatedQuestion, id);
+      setQuestion(response);
     } catch (error) {
       console.log(error);
     }
@@ -34,19 +49,22 @@ export const QuestionDetail = () => {
           <>
             <QuestionText>{question.question}</QuestionText>
             <ChoicesContainer>
-              {question?.choices?.map((choice) => (
+              {question?.choices?.map((choice, index) => (
                 <div key={choice.choice}>
-                  <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                  <div>
                     <span>{choice.choice}</span>
                     <span>{choice.votes}</span>
                   </div>
-                  <button onClick={() => console.log(choice)}>Vote</button>
+                  <button onClick={() => voteQuestion(index)}>Vote</button>
                 </div>
               ))}
             </ChoicesContainer>
           </>
         </QuestionContainer>
       )}
+      <div>
+        <GoBackButton onClick={() => navigate(-1)}>Back to list</GoBackButton>
+      </div>
     </DetailQuestionContainer>
   );
 };

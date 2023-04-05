@@ -99,3 +99,20 @@ export const ChoicesContainer = styled.div`
     cursor: pointer;
   }
 `;
+
+export const GoBackButton = styled.button`
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #3e8e41; /* cor de fundo ao passar o mouse */
+  }
+`;
