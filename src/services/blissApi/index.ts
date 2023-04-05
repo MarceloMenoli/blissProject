@@ -28,3 +28,13 @@ export const fetchQuestions = async (
     throw error;
   }
 };
+
+export const fetchQuestion = async (id?: number | string): Promise<Question> => {
+  try {
+    const response = await axios.get(`${ENDPOINTS.QUESTIONS}/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};

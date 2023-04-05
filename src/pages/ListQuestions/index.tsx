@@ -50,7 +50,7 @@ export const ListQuestions = () => {
       <QuestionWrapper>
         {questions?.map((question) => (
           <QuestionCard
-            onClick={() => navigate("/question/")}
+            onClick={() => navigate(`/question/${question.id}`)}
             key={question.id}
           >
             <h2>{question.question}</h2>
