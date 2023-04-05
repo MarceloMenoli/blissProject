@@ -1,6 +1,6 @@
-import axios from 'axios';
-import { ENDPOINTS } from '../apiConfig';
-import { Question } from '../types';
+import axios from "axios";
+import { ENDPOINTS } from "../apiConfig";
+import { Question, SearchParams } from "../types";
 
 // GET methods
 
@@ -10,17 +10,21 @@ export const fetchHealth = async () => {
     return response.data;
   } catch (error) {
     console.error(error);
-    throw error
+    throw error;
   }
 };
 
-
-export const fetchQuestions = async ():Promise<Question[]> => {
+export const fetchQuestions = async (
+  searchParams?: SearchParams
+): Promise<Question[]> => {
   try {
-    const response = await axios.get(ENDPOINTS.QUESTIONS);
+    const params = searchParams
+      ? new URLSearchParams(Object.fromEntries(Object.entries(searchParams)))
+      : undefined;
+    const response = await axios.get(`${ENDPOINTS.QUESTIONS}`, { params });
     return response.data;
   } catch (error) {
     console.error(error);
-    throw error
+    throw error;
   }
 };

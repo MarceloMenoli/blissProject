@@ -6,6 +6,7 @@ export const ListScreenContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  gap: 20px;
   background: rgb(2, 0, 36);
   background: linear-gradient(
     90deg,
@@ -34,6 +35,7 @@ export const QuestionCard = styled.div`
   padding: 20px;
   margin-bottom: 20px;
   width: 100%;
+  cursor: pointer;
 
   h2 {
     font-size: 20px;

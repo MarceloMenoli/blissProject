@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { fetchQuestions } from "../../services/blissApi";
 import { Question } from "../../services/types";
 import { ListScreenContainer, QuestionCard, QuestionWrapper } from "./styles";
+import { Search } from "../../components/SearchInput";
 
-export const ListScreen = () => {
+export const ListQuestions = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
 
   const listQuestions = async () => {
@@ -15,6 +16,15 @@ export const ListScreen = () => {
     }
   };
 
+  const handleSearch = async (filter: string) => {
+    try {
+      const results = await fetchQuestions({ filter: filter });
+      setQuestions(results);
+    } catch (error) {
+      console.error("Error fetching questions: ", error);
+    }
+  };
+
   useEffect(() => {
     listQuestions();
   }, []);
@@ -22,6 +32,7 @@ export const ListScreen = () => {
   return (
     <ListScreenContainer>
       <h1>List Screen</h1>
+      <Search onSearch={(search) => handleSearch(search)} />
       <QuestionWrapper>
         {questions?.map((question) => (
           <QuestionCard key={question.id}>
@@ -34,7 +45,6 @@ export const ListScreen = () => {
                 </li>
               ))}
             </ul>
-            <button>Vote</button>
           </QuestionCard>
         ))}
       </QuestionWrapper>
