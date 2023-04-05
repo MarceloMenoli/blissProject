@@ -1,31 +1,35 @@
 import { useEffect, useState } from "react";
 import fetchHealth from "../../services/blissApi";
+import { useNavigate } from "react-router-dom";
+import { LoadingScreen } from "../../components/LoadingScreen";
+import { RetryWidget } from "../../components/RetryWidget";
 
 export const Home = () => {
-  const [serverStatus, setServerStatus] = useState("");
-  const [isLoading, setIsloading] = useState<boolean>(false);
+  const [serverStatus, setServerStatus] = useState<string>("");
 
-  const minhaArrowFunction = async () => {
-    setIsloading(true);
+  const navigate = useNavigate();
+
+  const checkServerHealth = async () => {
     try {
       const data = await fetchHealth();
-      console.log(data);
+      setServerStatus(data.status);
+      navigate("/questions");
     } catch (error) {
       console.log(error);
-    } finally {
-      setIsloading(false);
     }
   };
 
   useEffect(() => {
-    minhaArrowFunction();
+    checkServerHealth();
   }, []);
 
-  if (serverStatus === "") {
-    return <div>Loading Screen</div>;
-  } else if (serverStatus === "OK") {
-    return <div>List Screen</div>;
-  } else {
-    return <p>Failed to connect to server.</p>;
-  }
+  return (
+    <div>
+      {serverStatus === "" ? (
+        <LoadingScreen />
+      ) : serverStatus !== "OK" ? (
+        <RetryWidget onRetry={() => checkServerHealth()} />
+      ) : null}
+    </div>
+  );
 };
