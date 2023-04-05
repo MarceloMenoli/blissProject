@@ -14,6 +14,6 @@ interface Choice {
 
 export interface SearchParams {
   filter?: string;
-  limit?: string;
-  offset?: string;
+  limit?: number;
+  offset?: number;
 }

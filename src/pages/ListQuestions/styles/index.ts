@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const ListScreenContainer = styled.div`
   min-height: 100vh;
@@ -66,5 +66,20 @@ export const QuestionCard = styled.div`
     cursor: pointer;
     font-size: 16px;
     padding: 10px;
+  }
+`;
+
+export const LoadMoreButton = styled.button`
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+
+  :hover {
+    background-color: #014185;
   }
 `;
