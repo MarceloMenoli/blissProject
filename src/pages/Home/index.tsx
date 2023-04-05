@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import fetchHealth from "../../services/blissApi";
+import { fetchHealth } from "../../services/blissApi";
 import { useNavigate } from "react-router-dom";
 import { LoadingScreen } from "../../components/LoadingScreen";
 import { RetryWidget } from "../../components/RetryWidget";
@@ -13,7 +13,7 @@ export const Home = () => {
     try {
       const data = await fetchHealth();
       setServerStatus(data.status);
-      navigate("/questions");
+      navigate("/questions?filter=FILTER");
     } catch (error) {
       console.log(error);
     }
