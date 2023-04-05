@@ -5,6 +5,7 @@ import { ListQuestions } from "../pages/ListQuestions";
 import { QuestionDetail } from "../pages/QuestionDetail";
 import { useEffect, useState } from "react";
 import { OfflineScreen } from "../pages/OfflineScreen";
+import { ShareScreen } from "../pages/ShareScreen";
 
 export const Router = () => {
   const [isOnline, setIsOnline] = useState(window.navigator.onLine);
@@ -25,6 +26,7 @@ export const Router = () => {
           <Route path="/" element={<Home />} />
           <Route path="/questions" element={<ListQuestions />} />
           <Route path="/question/:id" element={<QuestionDetail />} />
+          <Route path="/share" element={<ShareScreen />} />
           <Route path="*" element={<NotFound />} />
         </>
       ) : (
