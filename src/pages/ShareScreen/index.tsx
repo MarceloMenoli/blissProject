@@ -14,12 +14,13 @@ export const ShareScreen = () => {
   const handleShare = async (email: string, url: string) => {
     setIsLoading(true);
     if (!email) {
+      alert('Please enter an email address in the designated field.')
       setIsLoading(false);
       return;
     }
     try {
       const data = await shareContentUrl(email, url);
-      data.status === "OK" ? alert("Link compartilhado") : null;
+      data.status === "OK" ? alert("URL Shared") : null;
     } catch (error) {
       console.log(error);
     } finally {
