@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchHealth } from "../../services/blissApi";
 import { useNavigate } from "react-router-dom";
-import { LoadingScreen } from "../../components/LoadingScreen";
+import { LoadingScreen } from "../LoadingScreen";
 import { RetryWidget } from "../../components/RetryWidget";
 
 export const Home = () => {
