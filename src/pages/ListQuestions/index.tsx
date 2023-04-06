@@ -7,6 +7,7 @@ import {
   LoadMoreButton,
   QuestionCard,
   QuestionWrapper,
+  ShareWrapper,
 } from "./styles";
 import { Search } from "../../components/SearchInput";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -55,6 +56,7 @@ export const ListQuestions = () => {
   };
 
   const handleSearch = (search: string) => {
+    if(!search) return
     navigate(`/questions?filter=${search}`);
     listQuestions(search);
   };
@@ -69,13 +71,13 @@ export const ListQuestions = () => {
   return (
     <ListScreenContainer>
       <h1>List Screen</h1>
-      <div>
+      <ShareWrapper>
         <Search
           ref={searchInputRef}
           onSearch={(search) => handleSearch(search)}
         />
         <button onClick={handleShare}>Share</button>
-      </div>
+      </ShareWrapper>
       <QuestionWrapper>
         {questions?.map((question, index) => (
           <QuestionCard

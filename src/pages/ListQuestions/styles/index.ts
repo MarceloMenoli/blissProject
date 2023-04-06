@@ -20,6 +20,23 @@ export const ListScreenContainer = styled.div`
   }
 `;
 
+export const ShareWrapper = styled.div`
+  display: flex;
+  gap: 15px;
+  align-items: center;
+
+  > button {
+    padding: 10px 25px;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: background .5s;
+    :hover {
+      background: #ccc;
+      opacity: 0.8;
+    }
+  }
+`;
+
 export const QuestionWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;

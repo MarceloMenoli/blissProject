@@ -3,9 +3,9 @@ import { Question } from "../../services/types";
 import { useNavigate, useParams } from "react-router-dom";
 import { fetchQuestion, updateQuestion } from "../../services/blissApi";
 import {
+  ActionButton,
   ChoicesContainer,
   DetailQuestionContainer,
-  GoBackButton,
   QuestionContainer,
   QuestionText,
 } from "./styles";
@@ -41,6 +41,13 @@ export const QuestionDetail = () => {
     getQuestion();
   }, []);
 
+  const handleShare = () => {
+    const options = {
+      url: window.location.href,
+    };
+    navigate("/share", { state: options });
+  };
+
   return (
     <DetailQuestionContainer>
       <h1>Question Detail</h1>
@@ -62,8 +69,9 @@ export const QuestionDetail = () => {
           </>
         </QuestionContainer>
       )}
-      <div>
-        <GoBackButton onClick={() => navigate(-1)}>Back to list</GoBackButton>
+      <div style={{ display: "flex", gap: "10px" }}>
+        <ActionButton onClick={() => navigate(-1)}>Back to list</ActionButton>
+        <ActionButton onClick={handleShare}>Share</ActionButton>
       </div>
     </DetailQuestionContainer>
   );

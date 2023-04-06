@@ -100,7 +100,7 @@ export const ChoicesContainer = styled.div`
   }
 `;
 
-export const GoBackButton = styled.button`
+export const ActionButton = styled.button`
   background-color: #4caf50;
   border: none;
   color: white;

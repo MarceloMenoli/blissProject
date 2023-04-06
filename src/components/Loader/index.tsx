@@ -1,7 +1,3 @@
-import { Container, Spinner } from "./styles";
+import { LoaderContainer } from "./styles";
 
-export const Loader = () => (
-  <Container>
-    <Spinner />
-  </Container>
-);
+export const Loader = () => <LoaderContainer size="32px" color="#000" />;

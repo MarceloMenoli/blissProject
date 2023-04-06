@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-export const ShareForm = styled.form`
+export const ShareForm = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
   margin-top: 32px;
-  background: #d5f29d;
+  background: #9dcaf2;
   padding: 30px;
   border: 1px solid black;
   border-radius: 10px;
@@ -17,6 +17,11 @@ export const ShareForm = styled.form`
     font-size: 1rem;
     padding: 10px 0;
     border-radius: 5px;
+    transition: background .5s;
+    :hover {
+        opacity: 0.8;
+        background: #ccc
+    }
   }
 `;
 
