@@ -1,9 +1,9 @@
-import { PageNotFoundCotainer } from "./styles";
+import { Container } from "../../layout/Container";
 
 export const NotFound = () => {
   return (
-    <PageNotFoundCotainer>
+    <Container>
       <h1>Sorry, page not found. :(</h1>
-    </PageNotFoundCotainer>
+    </Container>
   );
 };

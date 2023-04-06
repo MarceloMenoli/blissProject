@@ -1,9 +1,9 @@
-import { OfflineScreenContainer } from "./styles/styles";
+import { Container } from "../../layout/Container";
 
 export const OfflineScreen = () => {
   return (
-    <OfflineScreenContainer>
+    <Container>
       <h1>Sorry, looks like you lost your internet connection. ):</h1>
-    </OfflineScreenContainer>
+    </Container>
   );
 };

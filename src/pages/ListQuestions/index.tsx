@@ -3,7 +3,6 @@ import { fetchQuestions } from "../../services/blissApi";
 import { Question } from "../../services/types";
 import { useRef } from "react";
 import {
-  ListScreenContainer,
   LoadMoreButton,
   QuestionCard,
   QuestionWrapper,
@@ -11,6 +10,7 @@ import {
 } from "./styles";
 import { Search } from "../../components/SearchInput";
 import { useLocation, useNavigate } from "react-router-dom";
+import { Container } from "../../layout/Container";
 
 export const ListQuestions = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -69,7 +69,7 @@ export const ListQuestions = () => {
   };
 
   return (
-    <ListScreenContainer>
+    <Container>
       <h1>List Screen</h1>
       <ShareWrapper>
         <Search
@@ -97,6 +97,6 @@ export const ListQuestions = () => {
         ))}
       </QuestionWrapper>
       <LoadMoreButton onClick={handleLoadMoreClick}>Load more</LoadMoreButton>
-    </ListScreenContainer>
+    </Container>
   );
 };

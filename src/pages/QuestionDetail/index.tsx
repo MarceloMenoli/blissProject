@@ -5,10 +5,10 @@ import { fetchQuestion, updateQuestion } from "../../services/blissApi";
 import {
   ActionButton,
   ChoicesContainer,
-  DetailQuestionContainer,
   QuestionContainer,
   QuestionText,
 } from "./styles";
+import { Container } from "../../layout/Container";
 
 export const QuestionDetail = () => {
   const [question, setQuestion] = useState<Question>();
@@ -49,7 +49,7 @@ export const QuestionDetail = () => {
   };
 
   return (
-    <DetailQuestionContainer>
+    <Container>
       <h1>Question Detail</h1>
       {question && (
         <QuestionContainer>
@@ -73,6 +73,6 @@ export const QuestionDetail = () => {
         <ActionButton onClick={() => navigate(-1)}>Back to list</ActionButton>
         <ActionButton onClick={handleShare}>Share</ActionButton>
       </div>
-    </DetailQuestionContainer>
+    </Container>
   );
 };
