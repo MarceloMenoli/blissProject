@@ -1,6 +1,4 @@
-# Project Name
-
-Bliss Project
+# Bliss Project
 
 ## Introduction
 
