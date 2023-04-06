@@ -1,19 +1,25 @@
 import { useEffect, useState } from "react";
 import { fetchQuestions } from "../../services/blissApi";
 import { Question } from "../../services/types";
+import { useRef } from "react";
 import {
-  ListScreenContainer,
   LoadMoreButton,
   QuestionCard,
   QuestionWrapper,
+  ShareWrapper,
 } from "./styles";
 import { Search } from "../../components/SearchInput";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Container } from "../../layout/Container";
 
 export const ListQuestions = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [offset, setOffset] = useState<number>(0);
   const navigate = useNavigate();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location?.search);
+  const filter = searchParams.get("filter");
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   const listQuestions = async (
     filter: string = "",
@@ -39,25 +45,50 @@ export const ListQuestions = () => {
     listQuestions();
   }, []);
 
+  useEffect(() => {
+    if (!filter) {
+      searchInputRef.current?.focus();
+    }
+  }, [filter]);
+
   const handleLoadMoreClick = () => {
     listQuestions("", offset + 10);
   };
 
+  const handleSearch = (search: string) => {
+    if(!search) return
+    navigate(`/questions?filter=${search}`);
+    listQuestions(search);
+  };
+
+  const handleShare = () => {
+    const options = {
+      url: window.location.href,
+    };
+    navigate("/share", { state: options });
+  };
+
   return (
-    <ListScreenContainer>
+    <Container>
       <h1>List Screen</h1>
-      <Search onSearch={(search) => listQuestions(search)} />
+      <ShareWrapper>
+        <Search
+          ref={searchInputRef}
+          onSearch={(search) => handleSearch(search)}
+        />
+        <button onClick={handleShare}>Share</button>
+      </ShareWrapper>
       <QuestionWrapper>
-        {questions?.map((question) => (
+        {questions?.map((question, index) => (
           <QuestionCard
             onClick={() => navigate(`/question/${question.id}`)}
-            key={question.id}
+            key={index}
           >
             <h2>{question.question}</h2>
             <img src={question.image_url} alt={question.question} />
             <ul>
-              {question?.choices?.map((choice) => (
-                <li key={choice.choice}>
+              {question?.choices?.map((choice, index) => (
+                <li key={index}>
                   {choice.choice} - {choice.votes} votes
                 </li>
               ))}
@@ -66,6 +97,6 @@ export const ListQuestions = () => {
         ))}
       </QuestionWrapper>
       <LoadMoreButton onClick={handleLoadMoreClick}>Load more</LoadMoreButton>
-    </ListScreenContainer>
+    </Container>
   );
 };

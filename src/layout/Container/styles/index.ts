@@ -1,11 +1,9 @@
 import styled from 'styled-components'
 
-export const OfflineScreenContainer = styled.div`
+export const LayoutContainer = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  text-align: center;
   align-items: center;
   padding: 20px;
   gap: 20px;

@@ -1,9 +1,9 @@
 import { Container } from "../../layout/Container";
 
-export const NotFound = () => {
+export const LoadingScreen = () => {
   return (
     <Container>
-      <h1>Sorry, page not found. :(</h1>
+      <h1>Loading...</h1>
     </Container>
   );
 };

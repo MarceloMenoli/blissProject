@@ -3,12 +3,12 @@ import { Question } from "../../services/types";
 import { useNavigate, useParams } from "react-router-dom";
 import { fetchQuestion, updateQuestion } from "../../services/blissApi";
 import {
+  ActionButton,
   ChoicesContainer,
-  DetailQuestionContainer,
-  GoBackButton,
   QuestionContainer,
   QuestionText,
 } from "./styles";
+import { Container } from "../../layout/Container";
 
 export const QuestionDetail = () => {
   const [question, setQuestion] = useState<Question>();
@@ -41,8 +41,15 @@ export const QuestionDetail = () => {
     getQuestion();
   }, []);
 
+  const handleShare = () => {
+    const options = {
+      url: window.location.href,
+    };
+    navigate("/share", { state: options });
+  };
+
   return (
-    <DetailQuestionContainer>
+    <Container>
       <h1>Question Detail</h1>
       {question && (
         <QuestionContainer>
@@ -62,9 +69,10 @@ export const QuestionDetail = () => {
           </>
         </QuestionContainer>
       )}
-      <div>
-        <GoBackButton onClick={() => navigate(-1)}>Back to list</GoBackButton>
+      <div style={{ display: "flex", gap: "10px" }}>
+        <ActionButton onClick={() => navigate(-1)}>Back to list</ActionButton>
+        <ActionButton onClick={handleShare}>Share</ActionButton>
       </div>
-    </DetailQuestionContainer>
+    </Container>
   );
 };

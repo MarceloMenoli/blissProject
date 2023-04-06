@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const PageNotFoundCotainer = styled.div`
+export const RetryWidgetContainer = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -17,5 +17,14 @@ export const PageNotFoundCotainer = styled.div`
 
   > h1 {
     color: #fff;
+  }
+
+  button {
+    padding: 10px;
+    border-radius: 20px;
+
+    :hover {
+        opacity: .8
+    }
   }
 `;

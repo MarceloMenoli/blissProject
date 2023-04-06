@@ -13,7 +13,7 @@ export const Router = () => {
   useEffect(() => {
     if (window.navigator.onLine) {
       setIsOnline(true);
-      navigate(-1);
+      // navigate(-1);
     } else {
       setIsOnline(false);
     }

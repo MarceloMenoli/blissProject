@@ -1,25 +1,5 @@
 import styled from "styled-components";
 
-export const DetailQuestionContainer = styled.div`
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  gap: 20px;
-  background: rgb(2, 0, 36);
-  background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(9, 9, 121, 1) 35%,
-    rgba(0, 212, 255, 1) 100%
-  );
-
-  > h1 {
-    color: #fff;
-  }
-`;
-
 export const QuestionContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -100,7 +80,7 @@ export const ChoicesContainer = styled.div`
   }
 `;
 
-export const GoBackButton = styled.button`
+export const ActionButton = styled.button`
   background-color: #4caf50;
   border: none;
   color: white;

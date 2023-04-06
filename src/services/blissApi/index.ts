@@ -58,5 +58,19 @@ export const updateQuestion = async (
   }
 };
 
-
 // POST methods
+
+export const shareContentUrl = async (email: string, url: string) => {
+  console.log(email, url);
+  
+  try {
+    const response = await axios.post(`${ENDPOINTS.SHARE}`, {
+      destination_email: email,
+      content_url: url,
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
